@@ -28,7 +28,11 @@ $(document).ready(function(){
      * Update text value
      */
     $('input[type="file"]').on('change', function(){
-        $('input[type="text"]').val(this.files[0].name);
+        let text = `
+            ${this.files[0].name} (${Math.ceil(this.files[0].size/1024) + "KiB"})
+        `;
+
+        $('input[type="text"]').val(text);
     });
 
     /**
