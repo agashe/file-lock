@@ -1,0 +1,63 @@
+/* ************ [Global] ************ */ 
+* {
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --brand: #1b97d0;
+    --button: #0a3d55;
+    --hover: #136b94;
+}
+/* ************ [Global] ************ */ 
+
+/* ************ [Header] ************ */ 
+header {
+    height: 150px;
+    margin-top: 50px;
+    text-align: center;
+}
+header h1 {
+    font-size: 6em;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bolder;
+    font-style: italic;
+}
+header h1 span {
+    color: var(--brand);
+}
+/* ************ [Header] ************ */ 
+
+/* ************ [Main] ************ */ 
+form {
+    min-height: 200px;
+    width: 500px;
+    margin: 5px auto;
+    padding: 15px;
+    background-color: var(--brand);
+    text-align: center;
+    color: white;
+}
+form .btn-custom {
+    min-height: 50px;
+    width: 200px;
+    margin: 5px;
+    padding: 10px;
+    border: none;
+    background-color: var(--button);
+    text-align: center;
+    color: white;
+}
+/* ************ [Main] ************ */ 
+
+/* ************ [Footer] ************ */ 
+footer {
+    width: 100%;
+    margin-top: 50px;
+    text-align: center;
+    font-weight: bold;
+    color: var(--brand);
+    position: fixed;
+    bottom: 0;
+}
+/* ************ [Footer] ************ */ 

@@ -1,7 +1,7 @@
 .gg-check-o {
     box-sizing: border-box;
     position: relative;
-    display: block;
+    display: inline-block;
     transform: scale(var(--ggs,1));
     width: 22px;
     height: 22px;
