@@ -8,5 +8,5 @@ use App\Http\Controllers\FileController;
 Route::get('/', HomeController::class)->name('home');
 
 // files APIs
-Route::get('files/encrypt', [FileController::class, 'encrypt'])->name('files.encrypt');
-Route::get('files/decrypt', [FileController::class, 'decrypt'])->name('files.decrypt');
+Route::post('files/encrypt', [FileController::class, 'encrypt'])->name('files.encrypt');
+Route::post('files/decrypt', [FileController::class, 'decrypt'])->name('files.decrypt');

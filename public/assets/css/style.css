@@ -1,3 +1,12 @@
+/**
+ * FileLock
+ * 
+ * author: Mohamed Yousef
+ * contact: engineer.mohamed.yossef@gmail.com
+ * version: 1.0.0
+ * license: MIT
+ */
+
 /* ************ [Global] ************ */ 
 * {
     margin: 0;
@@ -40,13 +49,19 @@ form {
 }
 form .btn-custom {
     min-height: 50px;
-    width: 200px;
+    width: 90%;
     margin: 5px;
     padding: 10px;
     border: none;
     background-color: var(--button);
     text-align: center;
     color: white;
+}
+form .btn-custom:hover {
+    background-color: var(--hover);
+}
+form input[type="text"] {
+    cursor: pointer;
 }
 /* ************ [Main] ************ */ 
 
@@ -61,3 +76,15 @@ footer {
     bottom: 0;
 }
 /* ************ [Footer] ************ */ 
+
+/* ************ [Responsive] ************ */ 
+@media only screen and (max-width: 600px) {
+    header h1 {
+        font-size: 5em;
+    }
+
+    form {
+        width: 90%;
+    }
+}
+/* ************ [Responsive] ************ */ 
