@@ -18,6 +18,22 @@
     --button: #0a3d55;
     --hover: #136b94;
 }
+
+.btn-custom {
+    min-height: 50px;
+    width: 90%;
+    margin: 5px;
+    padding: 10px;
+    border: none;
+    background-color: var(--button);
+    text-align: center;
+    text-decoration: none;
+    color: white;
+}
+.btn-custom:hover {
+    background-color: var(--hover);
+    color: white;
+}
 /* ************ [Global] ************ */ 
 
 /* ************ [Header] ************ */ 
@@ -46,19 +62,6 @@ form {
     background-color: var(--brand);
     text-align: center;
     color: white;
-}
-form .btn-custom {
-    min-height: 50px;
-    width: 90%;
-    margin: 5px;
-    padding: 10px;
-    border: none;
-    background-color: var(--button);
-    text-align: center;
-    color: white;
-}
-form .btn-custom:hover {
-    background-color: var(--hover);
 }
 form input[type="text"] {
     cursor: pointer;

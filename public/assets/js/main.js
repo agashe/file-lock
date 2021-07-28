@@ -34,7 +34,7 @@ $(document).ready(function(){
     /**
      * Encrypt/Decrypt file
      */
-    $('.btn-custom').click(function(e){
+    $('.upload').click(function(e){
         // stop form submition
         e.preventDefault();
 
@@ -56,7 +56,8 @@ $(document).ready(function(){
             data: formData,
         })
         .done(function(response){
-            // alert('success');
+            $('.message').text(response.message);
+            $('#download-button').attr('href', response.file).removeClass('d-none');
         });
     })
 });

@@ -2,11 +2,27 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Storage;
+use Illuminate\Http\Request;
+use App\Services\FileEncryptionServiceInterface;
 
 class FileController extends Controller
 {
+    /**
+     * @var FileEncryptionServiceInterface $fileService
+     */
+    private $fileService;
+
+    /**
+     * FileController Constructor
+     * 
+     * @param FileEncryptionServiceInterface $fileService
+     */
+    public function __construct(FileEncryptionServiceInterface $fileService)
+    {
+        $this->fileService = $fileService;    
+    }
+
     /**
      * Encrypt file
      * 
@@ -18,24 +34,16 @@ class FileController extends Controller
         if ($request->hasFile('selected_file')) {
             $file = $request->file('selected_file');
 
-            /**
-             * Original source for this function :
-             * https://www.php.net/manual/en/function.openssl-encrypt.php 
-             */
+            $encryptedFile = $this->fileService->encrypt(file_get_contents($file),
+                config('encryption.key'), config('encryption.method'));
 
-            // secure key
-            $key = 'MbeX9gQ7RrrKv&Er7`c,t6$:,^LHx5~e';
-
-            $encryption_key = base64_decode($key);
-            $iv = substr($encryption_key, 0, 16);
-            $encrypted = openssl_encrypt(file_get_contents($file), 
-                'aes-256-cbc', $encryption_key, 0, $iv);
-
-            Storage::disk('public')->put('encrypted/' . $file->getClientOriginalName() . '.enc', $encrypted);
+            $fileName = 'encrypted/' . $file->getClientOriginalName() . '.enc';
+            Storage::disk('public')->put($fileName, $encryptedFile);
 
             return response()->json([
                 'status' => true,
-                'message' => 'Success'
+                'message' => 'Your file has been encrypted successfully!',
+                'file' => Storage::url($fileName)
             ]);
         }
         
@@ -56,27 +64,19 @@ class FileController extends Controller
         if ($request->hasFile('selected_file')) {
             $file = $request->file('selected_file');
 
-            /**
-             * Original source for this function :
-             * https://www.php.net/manual/en/function.openssl-encrypt.php 
-             */
+            $file = $request->file('selected_file');
 
-            // secure key
-            $key = 'MbeX9gQ7RrrKv&Er7`c,t6$:,^LHx5~e';
+            $decryptedFile = $this->fileService->decrypt(file_get_contents($file),
+                config('encryption.key'), config('encryption.method'));
 
-            $encryption_key = base64_decode($key);
-            $iv = substr($encryption_key, 0, 16);
-            $decrypted = openssl_decrypt(file_get_contents($file), 
-                'aes-256-cbc', $encryption_key, 0, $iv);
-
-            Storage::disk('public')->put(
-                'decrypted/' . substr($file->getClientOriginalName(), 0,
-                strpos($file->getClientOriginalName(), '.enc')), $decrypted
-            );
+            $fileName = 'decrypted/' . substr($file->getClientOriginalName(), 0,
+                strpos($file->getClientOriginalName(), '.enc'));
+            Storage::disk('public')->put($fileName, $decryptedFile);
 
             return response()->json([
                 'status' => true,
-                'message' => 'Success'
+                'message' => 'Your file has been decrypted successfully!',
+                'file' => Storage::url($fileName)
             ]);
         }
         
