@@ -46,7 +46,7 @@ $(document).ready(function(){
 
         // send the request
         var formData = new FormData($('form')[0]);
-        console.log(window.location.href + $(this).data('url'));
+
         $.ajax({
             url: window.location.href + $(this).data('url'),
             type: 'POST',
@@ -56,7 +56,7 @@ $(document).ready(function(){
             data: formData,
         })
         .done(function(response){
-            alert('success');
+            // alert('success');
         });
     })
 });
